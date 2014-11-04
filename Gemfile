@@ -19,7 +19,7 @@ gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
-
+gem 'rails_12factor', group: :production
 group :development do
   gem 'spring'
 end
