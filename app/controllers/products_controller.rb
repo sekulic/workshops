@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  include ApplicationHelper
+  before_action :authenticate_user!, only: [:destroy, :create, :update, :edit]
+  before_action :is_owner, only: [:update, :edit] 
   expose(:category)
   expose(:products)
   expose(:product)
@@ -18,7 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    self.product = Product.new(product_params)
+    self.product = Product.new(product_params.merge(:user_id => current_user.id))
 
     if product.save
       category.products << product
@@ -29,11 +32,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if self.product.update(product_params)
-      redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
-    else
-      render action: 'edit'
-    end
+      if self.product.update(product_params)
+        redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
+      else
+        render action: 'edit'
+      end 
   end
 
   # DELETE /products/1
@@ -41,9 +44,15 @@ class ProductsController < ApplicationController
     product.destroy
     redirect_to category_url(product.category), notice: 'Product was successfully destroyed.'
   end
-
+   
+ 
   private
-
+  def is_owner 
+    unless current_user == product.user
+      redirect_to(category_product_url(category, product), {:flash => { :error => "You are not allowed to edit this product." }})
+    end
+  end 
+  
   def product_params
     params.require(:product).permit(:title, :description, :price, :category_id)
   end

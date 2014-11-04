@@ -1,25 +1,36 @@
-%p#notice= notice
-%p#error= flash[:error]
+.row
+  .col-lg-1
+  .col-lg-8
+    %p#notice= notice
+    %p#error= flash[:error]
+    
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
+    %h1= product.title
+    %p
+      %b Description:
+      = product.description
+    .row
+      .col-lg-4
+        %p
+          %b Price:
+          = product.price
+      .col-lg-4   
+        %p
+          %b Category:
+          = product.category.name
+      .col-lg-4       
+        %p
+          %b Average Rating:
+          = product.average_rating  
+    %h3 Reviews 
+    = render reviews
+    
 
-%p
-  %b Category
-  = product.category.name
+    = render 'reviews/form'
+    
 
-%h3 Reviews
-= render 'reviews/form'
-
-= render reviews
-
-= link_to 'Edit', edit_category_product_path(category.id, product.id)
-\|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+    
+    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-info'
+    \|
+    = link_to 'Back', category_products_path, class: 'btn btn-danger'
+  .col-lg-3

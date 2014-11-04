@@ -1,21 +1,37 @@
-%h1 Listing products
-
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
-
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      %td= link_to 'Edit', edit_category_product_path(product.category, product)
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
+.row
+  .col-lg-1
+  .col-lg-10
+    %h1= "Products for #{category.name}"
+    
+    %table.table.table-striped.table-bordered
+      %tr
+        %th Title
+        %th Description
+        %th Price
+        %th Avg rating
+        %th Actions
+            
+      - products.each do |product|
+        %tr
+          %td
+            %h4 
+              =product.title
+          %td
+            %h4 
+              =description_substring(product.description)  
+          %td
+            %h4 
+              =product.price   
+          %td
+            %h4 
+              =product.average_rating                                     
+          %td
+            = link_to 'Show', category_product_path(product.category, product), :class => "btn btn-info"
+            = link_to 'Edit', edit_category_product_path(product.category, product), :class => "btn btn-warning"
+            = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"
+    %br
+    
+    = link_to 'New Product', new_category_product_path(category), :class => "btn btn-primary"
+  .col-lg-1

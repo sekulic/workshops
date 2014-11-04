@@ -1,4 +1,9 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+.row
+
+  .col-lg-10
+    %blockquote
+      %p= review.content
+      %p rating:
+      %b= review.rating
+      %footer= review.author
+  .col-lg-2

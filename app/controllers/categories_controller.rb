@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  
+  before_action :check_isadmin?, only: [:new, :edit, :update, :create]
+    
   expose(:categories)
   expose(:category)
   expose(:product) { Product.new }
