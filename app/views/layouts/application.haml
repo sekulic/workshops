@@ -18,12 +18,13 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand{href: "#"} Netguru Kraków Workshops 2014
+        %a.navbar-brand{href: root_path} Netguru Kraków Workshops 2014
       .collapse.navbar-collapse.navbar-ex1-collapse
         %ul.nav.navbar-nav
           %li
             %a{href: root_path}  CATEGORIES
-
+          %li
+            %a{href: products_path}  PRODUCTS
 
         %ul.nav.navbar-nav.navbar-right
           - if signed_in?

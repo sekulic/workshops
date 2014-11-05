@@ -3,7 +3,7 @@
 .row
   .col-lg-1
   .col-lg-10
-    %h1= "Products for #{category.name}"
+    %h1= "Products"
     
     %table.table.table-striped.table-bordered
       %tr
@@ -33,5 +33,4 @@
             = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"
     %br
     
-    = link_to 'New Product', new_category_product_path(category), :class => "btn btn-primary"
   .col-lg-1

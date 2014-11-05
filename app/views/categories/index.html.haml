@@ -15,7 +15,7 @@
             %h4 
               =category.name
           %td
-            = link_to "products for #{category.name}", category_products_path(category.id), :class => "btn btn-default"
+            = link_to "products for #{category.name}", category, :class => "btn btn-default"
           %td
             = link_to 'Show', category, :class => "btn btn-info"
             = link_to 'Edit', edit_category_path(category), :class => "btn btn-warning"

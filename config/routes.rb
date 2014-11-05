@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   end
   devise_for :users
   root 'categories#index'
-  get 'profile', to: 'static_pages#profile'  
+  get 'profile', to: 'static_pages#profile' 
+  get 'products', to: 'products#index'   
 end
