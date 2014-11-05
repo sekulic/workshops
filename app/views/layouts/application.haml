@@ -30,7 +30,7 @@
             %li
               %a{href: profile_path } PROFILE
             %li
-              %a{href: destroy_user_session_path(current_user), :method => :delete }  LOG OUT           
+              = link_to 'LOG OUT', destroy_user_session_path, :method => :delete          
           - else
             %li
               %a{href: new_user_session_path }  LOG IN
